@@ -1,39 +1,54 @@
-
----
-
-## 🌐 `finwise-front/README.md`
-
-```markdown
-# FinWise Frontend – Angular Web Interface
+# FinWise Frontend – Web Banking Portal for Microfinance
 
 ![Angular](https://img.shields.io/badge/Angular-17-red.svg)
 ![TypeScript](https://img.shields.io/badge/TypeScript-4.x-blue.svg)
 ![CI/CD](https://img.shields.io/badge/CI/CD-GitHub%20Actions-green)
+![Responsive](https://img.shields.io/badge/Responsive%20UI-Tailwind%20CSS-blue)
 
-> This is the frontend of **FinWise**, a responsive banking interface for microfinance institutions, agents, and clients.
-
----
-
-## 🎨 Tech Stack
-
-- **Angular 17**
-- **TailwindCSS** + ShadCN
-- **RxJS**, **Angular Forms**
-- **OAuth2 / Keycloak** for Auth
-- **REST API** communication with backend
-- **WebSockets/Kafka** for real-time updates
+> **FinWise Front** is the official web interface of the **FinWise Core Banking System**, tailored for microfinance institutions.  
+> Built with **Angular 17**, this frontend offers a responsive, secure, and role-based user experience for admins, agents, and clients to interact with the backend services.
 
 ---
 
-## 📺 Features
+## 🧱 Tech Stack
 
-- Responsive dashboard for agents & admins
-- Customer onboarding & KYC forms
-- Real-time account balance and transaction feeds
-- Dynamic UI with reactive forms
-- Multi-role access (Admin, Agent, Supervisor)
-- Notifications system (toast & inbox)
-- Clean modular code with reusable components
+- **Angular 17** (with Standalone Components)
+- **TypeScript 4+**
+- **TailwindCSS** + **ShadCN for UI Components**
+- **RxJS** for reactive programming
+- **OAuth2 / Keycloak** for Authentication
+- **REST APIs** for communication with FinWise API
+- **WebSockets / Kafka (optional)** for real-time notifications
+
+---
+
+## 🎨 Key Features
+
+| Feature                    | Description                                                   |
+|---------------------------|---------------------------------------------------------------|
+| 🔐 Auth                   | OAuth2 login via Keycloak, with role-based access             |
+| 👤 Client Management       | Register, edit, KYC document upload                           |
+| 💼 Accounts Overview       | View balances, transactions, and account details              |
+| 💳 Loan Management         | Loan application, tracking, repayment                        |
+| 💰 Savings Module          | Subscribe to products, make deposits/withdrawals              |
+| 📲 Wallet & Mobile Money   | Link to MTN MoMo, Orange Money, send mobile transfers         |
+| 📊 Dashboards              | KPI and performance dashboards for admins and agents          |
+| 🔔 Notifications           | Push & in-app notifications, linked to Kafka events           |
+| ⚙️ Config Settings         | Access control, UI preferences, language, themes              |
+
+---
+
+## 🌐 Architecture Overview
+
++---------------------+ +--------------------+
+| Angular Frontend | <-----> | Backend Services |
+| (finwise-front) | REST | (finwise-api) |
++---------------------+ +--------------------+
+| |
+| OAuth2 (Keycloak) |
+v v
+[Authentication Server] [Kafka / PostgreSQL]
+
 
 ---
 
@@ -41,14 +56,15 @@
 
 ### Prerequisites
 
-- Node.js >= 18.x
-- Angular CLI >= 17.x
+- Node.js (v18 or later)
+- Angular CLI (`npm install -g @angular/cli`)
+- Backend services (`finwise-api`) running
+- Keycloak configured for OAuth2
 
-### Installation
+### Install & Run
 
 ```bash
 git clone https://github.com/your-org/finwise-front.git
 cd finwise-front
-
 npm install
 ng serve --open
