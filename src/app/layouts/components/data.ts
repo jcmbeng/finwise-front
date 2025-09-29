@@ -169,6 +169,15 @@ export const menuItems: MenuItemType[] = [
         ],
     },
     {
+        label: 'User Documents',
+        icon: LucideUsers,
+        isCollapsed: true,
+        children: [
+            {label: 'Create Document', url: '/docs-user/create-document'},
+            {label: 'Documents', url: '/docs-user/documents'}
+        ]
+    },
+    {
         label: 'Users',
         icon: LucideUsers,
         isCollapsed: true,

@@ -4,6 +4,10 @@ import {Widgets} from '@/app/views/widgets/widgets';
 export const VIEWS_ROUTES: Routes = [
     {
         path: '',
+        loadChildren: () => import('./docs-user/docs-user.routes').then((mod) => mod.DOCS_USER)
+    },
+    {
+        path: '',
         loadChildren: () => import('./dashboards/dashboards.routes').then((mod) => mod.DASHBOARDS_ROUTES)
     },
     {
