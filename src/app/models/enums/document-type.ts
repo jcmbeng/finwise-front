@@ -1,0 +1,12 @@
+/**
+ * Enum representing document types
+ */
+export enum DocumentType {
+    NATIONAL_ID = 'NATIONAL_ID',
+    PASSPORT = 'PASSPORT',
+    DRIVING_LICENSE = 'DRIVING_LICENSE',
+    VOTER_ID = 'VOTER_ID',
+    RESIDENCE_PERMIT = 'RESIDENCE_PERMIT',
+    COMMERCIAL_LICENSE = 'COMMERCIAL_LICENSE',
+    ASSOCIATION_CARD = 'ASSOCIATION_CARD'
+}

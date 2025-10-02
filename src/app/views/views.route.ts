@@ -4,7 +4,7 @@ import {Widgets} from '@/app/views/widgets/widgets';
 export const VIEWS_ROUTES: Routes = [
     {
         path: '',
-        loadChildren: () => import('./docs-user/docs-user.routes').then((mod) => mod.DOCS_USER)
+        loadChildren: () => import('./customers/documents/customer-document.routes').then((mod) => mod.CUSTOMER_DOCUMENTS)
     },
     {
         path: '',

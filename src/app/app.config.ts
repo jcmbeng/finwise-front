@@ -4,6 +4,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { routes } from './app.routes';
 import { DecimalPipe } from '@angular/common'
 import {provideDaterangepickerLocale} from 'ngx-daterangepicker-bootstrap';
+import {provideHttpClient} from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,6 +15,7 @@ export const appConfig: ApplicationConfig = {
       provideDaterangepickerLocale({
           separator: ' - ',
           cancelLabel: 'Cancel',
-      })
+      }),
+      provideHttpClient()
   ],
 };

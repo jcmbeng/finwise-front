@@ -9,13 +9,13 @@ import { Proposals } from '@/app/views/crm/proposals/proposals';
 import { Estimations } from '@/app/views/crm/estimations/estimations';
 import { Customers } from '@/app/views/crm/customers/customers';
 import { Activities } from '@/app/views/crm/activities/activities';
-import { DocumentUserList } from '../docs-user/document-user-list/document-user-list';
+import { UserDocumentList } from '../customers/documents/document-user-list/user-document-list.component';
 
 
 export const CRM_ROUTES: Routes = [
     {
-        path: 'docs-user/documents',
-        component: DocumentUserList,
+        path: 'customers/documents',
+        component: UserDocumentList,
         data: { title: "User Documents" },
     },
 

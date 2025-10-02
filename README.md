@@ -61,10 +61,20 @@ v v
 - Backend services (`finwise-api`) running
 - Keycloak configured for OAuth2
 
-### Install & Run
+# Install & Run ##
+
+### Install Components
+```bash
+  npm install
+```
+
+### Run the project
+```bash
+  npm start
+```
 
 ```bash
-git clone https://github.com/your-org/finwise-front.git
-cd finwise-front
-npm install
-ng serve --open
+    git clone https://github.com/your-org/finwise-front.git
+    cd finwise-front
+    npm install
+    ng serve --open

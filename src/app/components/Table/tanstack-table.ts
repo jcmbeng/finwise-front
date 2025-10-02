@@ -2,10 +2,11 @@ import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {Cell, FlexRenderDirective, Table} from '@tanstack/angular-table';
 import {CommonModule} from '@angular/common';
 import {NgIcon} from '@ng-icons/core';
+import {NgbDropdown, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-tanstack-table',
-    imports: [FlexRenderDirective, CommonModule, NgIcon],
+    imports: [FlexRenderDirective, CommonModule, NgIcon, NgbDropdown, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle],
     changeDetection: ChangeDetectionStrategy.OnPush,
     template: `
         <div [ngClass]="['table-responsive', className]">
@@ -72,21 +73,33 @@ import {NgIcon} from '@ng-icons/core';
                                                [checked]="cell.row.getIsSelected()"
                                                (change)="cell.row.toggleSelected($any($event.target).checked)"/>
                                     }
-                                    @if (cell.column.id === 'actions') {
+                                    @if (cell.column.id === 'actions' && (canEdit || canShowDetails || canDelete)) {
                                         <div class="d-flex  gap-1 align-items-center">
-                                            <button class="btn btn-light btn-icon btn-sm rounded-circle">
-                                                <ng-icon
-                                                    name="tablerEye" class="fs-lg"/>
-                                            </button>
-                                            <button class="btn btn-light btn-icon btn-sm rounded-circle">
-                                                <ng-icon
-                                                    name="tablerEdit" class="fs-lg"/>
-                                            </button>
-                                            <button class="btn btn-danger btn-icon btn-sm rounded-circle"
-                                                    (click)="deleteUser(getId(cell))">
-                                                <ng-icon
-                                                    name="tablerTrash" class="fs-lg"/>
-                                            </button>
+                                            <div ngbDropdown placement="bottom-end">
+                                                <a href="javascript:void(0);" ngbDropdownToggle
+                                                   class="text-muted drop-arrow-none card-drop p-0"
+                                                >
+                                                    <ng-icon name="tablerDotsVertical" class="fs-lg"/>
+                                                </a>
+                                                <div ngbDropdownMenu class="dropdown-menu-end">
+                                                    @if (canShowDetails) {
+                                                    <a href="javascript:void(0)" ngbDropdownItem title="Show Details"><ng-icon
+                                                        name="tablerEye" class="fs-lg"/> Show Details
+                                                    </a>
+                                                    }
+                                                    @if (canEdit) {
+                                                    <a href="javascript:void(0)" ngbDropdownItem title="Edit"><ng-icon
+                                                        name="tablerEdit" class="fs-lg" style="color : #6d5fde;"/> Edit
+                                                    </a>
+                                                    }
+                                                    @if (canDelete) {
+                                                    <a href="javascript:void(0)" ngbDropdownItem title="Delete">
+                                                        <ng-icon
+                                                            name="tablerTrash" class="fs-lg" style="color : #f2526a;"/> Delete
+                                                    </a>
+                                                    }
+                                                </div>
+                                            </div>
                                         </div>
 
                                     } @else {
@@ -113,6 +126,9 @@ export class TanstackTable<T> {
     @Input() deleteUser!: (id: number) => void;
     @Input() emptyMessage: string | undefined = 'Nothing found.';
     @Input() showHeaders = true;
+    @Input() canEdit = false;
+    @Input() canDelete = false;
+    @Input() canShowDetails = false;
 
     get columns() {
         return this.table.getAllColumns();
