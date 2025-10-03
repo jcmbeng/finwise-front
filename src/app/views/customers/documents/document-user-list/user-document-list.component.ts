@@ -34,6 +34,11 @@ import {CompanyType} from '@/app/views/tables/tanstack/data';
 export class UserDocumentList implements OnInit {
    private readonly modalService = inject(NgbModal);
 
+
+    canCreate: boolean = true
+    canExport: boolean = false
+    createButtonText: string = "Add new Document"
+    exportButtonText: string = "Export Documents"
     canEdit = false;
     canDelete = false;
     canShowDetails = true;

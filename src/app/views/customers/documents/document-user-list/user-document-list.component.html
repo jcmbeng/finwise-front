@@ -17,7 +17,12 @@
 
             <div class="row">
                 <div class="col-12">
-                    <app-ui-card title="Table with Filters" bodyClass="p-0">
+                    <app-ui-card 
+                    [canCreate]="canCreate"
+                    [canExport]="canExport"
+                    [createButtonText]="createButtonText"
+                    [exportButtonText]="exportButtonText"
+                    bodyClass="p-0">
                         <ng-content card-body>
                             <div class="card-header justify-content-between">
                                 <div>
@@ -87,23 +92,23 @@
 <ng-template #content let-modal>
 
     <div class="modal-header">
-        <h5 class="modal-title" id="addRoleModalLabel">Add New Role</h5>
+        <h5 class="modal-title" id="addRoleModalLabel">{{createButtonText || "Add New Role"}}</h5>
         <button type="button" class="btn-close" (click)="modal.dismiss()"></button>
     </div>
 
     <form id="addRoleForm">
         <div class="modal-body">
-            <div class="row g-3">
+            <div class="row g-12">
 
                 <div class="col-md-6">
-                    <label for="roleName" class="form-label">Role Name</label>
-                    <input type="text" class="form-control" id="roleName" placeholder="e.g. Developer, Project Manager"
+                    <label for="documentNumber" class="form-label">Document Number</label>
+                    <input type="text" class="form-control" id="documentNumber" placeholder="e.g. DOC-12345"
                            required>
                 </div>
 
                 <div class="col-md-6">
-                    <label for="roleDescription" class="form-label">Description</label>
-                    <input type="text" class="form-control" id="roleDescription" placeholder="Brief description"
+                    <label for="documentType" class="form-label">Document Type</label>
+                    <input type="text" class="form-control" id="documentType" placeholder="Brief description"
                            required>
                 </div>
 

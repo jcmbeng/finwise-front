@@ -9,9 +9,21 @@ import {NgbCollapse} from '@ng-bootstrap/ng-bootstrap';
         @if (isVisible) {
             <div class="card {{isCollapsed ? 'card-collapse' : ''}} {{className}}">
                 <div class="card-header justify-content-between align-items-center" [class]="isCollapsed ?'border-0':''">
-                    <h5 class="card-title">{{ title }}
-                        <ng-content select="[badge-text]"></ng-content>
-                    </h5>
+                    <div class="d-flex gap-2">
+                     @if (canCreate) {
+                        <a routerLink="/add-product" class="btn btn-sm btn-soft-secondary">
+                        <ng-icon name="tablerPlus" class="me-1"/>
+                        {{ createButtonText || 'Add New' }}
+                    </a>
+                     }
+                      @if (canExport) {
+                    <a href="javascript:void(0);" class="btn btn-sm btn-primary">
+                        <ng-icon name="tablerFileExport" class="me-1"/>
+                        {{ exportButtonText || 'Export' }}
+                    </a>
+                      }
+                    </div>
+                </div>
                     <div>
                         @if (isTogglable || isReloadable || isCloseable) {
                             <div class="card-action">
@@ -40,7 +52,7 @@ import {NgbCollapse} from '@ng-bootstrap/ng-bootstrap';
                         }
                         <ng-content select="[helper-text]"></ng-content>
                     </div>
-                </div>
+                   
 
                 <div class="card-body {{bodyClass}}" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
                     <ng-content select="[card-body]"></ng-content>
@@ -61,6 +73,10 @@ export class UiCard {
     @Input() isTogglable?: boolean
     @Input() isReloadable?: boolean
     @Input() isCloseable?: boolean
+    @Input() canCreate?: boolean
+    @Input() canExport?: boolean
+    @Input() createButtonText?: string
+    @Input() exportButtonText?: string
     @Input() bodyClass?: string
     @Input() className?: string
 

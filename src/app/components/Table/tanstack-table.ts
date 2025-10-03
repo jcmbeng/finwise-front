@@ -129,6 +129,8 @@ export class TanstackTable<T> {
     @Input() canEdit = false;
     @Input() canDelete = false;
     @Input() canShowDetails = false;
+    @Input() canExport = false;
+    @Input() canAdd = false;
 
     get columns() {
         return this.table.getAllColumns();
